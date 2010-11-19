@@ -1,0 +1,47 @@
+<config>
+    <tabs>
+        <gearmanconfig translate="label" module="gearman">
+            <label>Ibuildings Gearman Module</label>
+            <sort_order>99999</sort_order>
+        </gearmanconfig>
+    </tabs>
+    <sections>
+        <gearman_options translate="label" module="gearman">
+            <label>Gearman Configuration</label>
+            <tab>gearmanconfig</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>1000</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <gearman translate="label">
+                    <label>Gearman Server</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <server>
+                            <label>Gearman Server IP Address</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </server>
+                        <port>
+                            <label>Gearman Server Port</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </port>
+                    </fields>
+                </gearman>
+            </groups>                  
+        </gearman_options>
+    </sections>
+</config>

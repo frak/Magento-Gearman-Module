@@ -48,30 +48,30 @@ For the event/task array, the 'queue' key is the name of the job queue function 
 
 An example, if not very functional, worker is shown below as an demo of how you might go about implementing a simple standalone worker:
 
-`<?php
+    <?php
 
-$worker = new GearmanWorker();
-$worker->addServer('127.0.0.1', 4730);
-$worker->addFunction('test', 'test_fn');
+    $worker = new GearmanWorker();
+    $worker->addServer('127.0.0.1', 4730);
+    $worker->addFunction('test', 'test_fn');
 
-echo "Waiting for work...\n";
-while ($worker->work()) {
-    if ($worker->returnCode() !== GEARMAN_SUCCESS) {
-        echo "Ooops: " . $worker->returnCode() . "\n";
-        break;
+    echo "Waiting for work...\n";
+    while ($worker->work()) {
+        if ($worker->returnCode() !== GEARMAN_SUCCESS) {
+            echo "Ooops: " . $worker->returnCode() . "\n";
+            break;
+        }
     }
-}
 
-function test_fn($job)
-{
-    $task = unserialize($job->workload());
-    $task['payload'] = strrev($task['payload']);
-    if (isset($task['callback'])) {
-        $task['result'] = file_get_contents($task['callback']);
+    function test_fn($job)
+    {
+        $task = unserialize($job->workload());
+        $task['payload'] = strrev($task['payload']);
+        if (isset($task['callback'])) {
+            $task['result'] = file_get_contents($task['callback']);
+        }
+        return serialize($task);
     }
-    return serialize($task);
-}``
 
 Should you prefer to call a function in an object, statically of course, then you need to pass an array into the addFunction() method as follows:
 
-$worker->addFunction('test', array('MyStaticClass', 'workerMethod'));
+    $worker->addFunction('test', array('MyStaticClass', 'workerMethod'));

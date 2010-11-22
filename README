@@ -80,3 +80,10 @@ function test_fn($job)
     }
     return serialize($task);
 }
+
+Should you prefer to call a function in an object, statically of course, then you need to pass an array into the addFunction() method as follows:
+
+$worker->addFunction(
+    'test',
+    array('MyStaticClass', 'workerMethod')
+);

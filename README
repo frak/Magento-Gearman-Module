@@ -54,8 +54,8 @@ other end of the queue and may contain any arbitrary data.  In the
 examples given above, there is an ID, some data and an optional callback
 URI, however, this is entirely up to the specifics of your implementation.
 
-An example, if not very functional, worker is shown below as an example
-of how you might go about implementing a simple standalone worker:
+An example, if not very functional, worker is shown below as an demo of how
+you might go about implementing a simple standalone worker:
 
 <?php
 

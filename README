@@ -24,7 +24,7 @@ after it has been sent), like so:
         'payload'  => 'This is a string!',
         'callback' => 'http://some.server.com/stuff_was_done.php'
     );
-    Mage::dispatchEvent('do_async_task', $event);
+    Mage::dispatchEvent('gearman_do_async_task', $event);
 
 If, however, you wish to be able to query the server for the status
 of your submitted task, you will need to instantiate the queue directly:

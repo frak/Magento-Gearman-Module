@@ -32,14 +32,14 @@
 	       </gearman>
 	    </models>
 	    <events>
- 	       <do_async_task>
+ 	       <gearman_do_async_task>
  	           <observers>
  	               <gearman>
  	                   <class>Ibuildings_Gearman_Model_Observer</class>
  	                   <method>dispatchTask</method>
  	               </gearman>
  	           </observers>
- 	       </do_async_task>
+ 	       </gearman_do_async_task>
 	    </events>
 	    <helpers>
 	       <gearman>

@@ -73,10 +73,10 @@ while ($worker->work()) {
 
 function test_fn($job)
 {
-    $stuff = unserialize($job->workload());
-    $stuff['payload'] = strrev($stuff['payload']);
-    if (isset($stuff['callback'])) {
-        $stuff['result'] = file_get_contents($stuff['callback']);
+    $task = unserialize($job->workload());
+    $task['payload'] = strrev($task['payload']);
+    if (isset($task['callback'])) {
+        $task['result'] = file_get_contents($task['callback']);
     }
-    return serialize($stuff);
+    return serialize($task);
 }

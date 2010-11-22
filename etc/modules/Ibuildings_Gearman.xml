@@ -1,0 +1,8 @@
+<config>
+    <modules>
+        <Ibuildings_Gearman>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Ibuildings_Gearman>
+    </modules>
+</config>

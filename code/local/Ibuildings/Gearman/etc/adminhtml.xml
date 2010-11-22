@@ -1,0 +1,23 @@
+<config>
+    <adminhtml>
+       <acl>
+           <resources>
+               <admin>
+                   <children>
+                       <system>
+                           <children>
+                               <config>
+                                   <children>
+                                       <gearman_options>
+                                           <title>Ibuildings Gearman Module</title>
+                                       </gearman_options>
+                                   </children>
+                               </config>
+                           </children>
+                       </system>
+                   </children>
+               </admin>
+           </resources>
+       </acl>
+    </adminhtml>
+</config>

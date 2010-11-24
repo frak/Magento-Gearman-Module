@@ -25,6 +25,9 @@ need to install the gearman job server:
 
 Using the module:
 -----------------
+Once you have installed the module, you will need to configure it so that it
+knows where how to connect to your job server(s).  This is done view the Configuration section of the Magento administration section.
+
 There are two ways in which the module can be used, either by simply firing an
 event (in which case you will not be able to track the job after it has been
 sent), like so:

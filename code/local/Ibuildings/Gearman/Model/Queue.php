@@ -1,6 +1,8 @@
 <?php
 
-@require_once 'Net/Gearman/Client.php';
+if (!class_exists('GearmanClient')) {
+    require_once 'Net/Gearman/Client.php';
+}
 
 /**
  * Ibuildings Gearman Magento Model Observer
@@ -27,16 +29,21 @@ class Ibuildings_Gearman_Model_Queue extends Mage_Core_Model_Abstract
      */
     public function __construct()
     {
-        $opts = Mage::getStoreConfig('gearman_options');
+        $opts    = Mage::getStoreConfig('gearman_options');
+        $servers = explode(',', $opts['gearman']['server']);
+        $ports   = explode(',', $opts['gearman']['port']);
+        $count   = count($servers);
+        $onePort = (count($servers) !== count($ports)) ? true : false;
+        for ($i = 0; $i < $count; ++$i) {
+            $servers[$i] .= ':' . (($onePort) ? $ports[0] : $ports[$i]);
+        }
         if (class_exists('Net_Gearman_Client')) {
-            $server = $opts['gearman']['server'] . ':' . $opts['gearman']['port'];
-            $this->_client = new Net_Gearman_Client($server);
+            $this->_client = new Net_Gearman_Client($servers);
         }
         else {
             $this->_client = new GearmanClient();
-            $this->_client->addServer(
-                $opts['gearman']['server'],
-                $opts['gearman']['port']
+            $this->_client->addServers(
+                implode(',', $servers)
             );
         }
     }

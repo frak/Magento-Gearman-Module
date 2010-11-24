@@ -25,6 +25,7 @@
                     <fields>
                         <server>
                             <label>Gearman Server IP Address</label>
+                            <comment>To add more than one server, simply seprate the IPs with commas (no spaces).</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>1</sort_order>
                             <show_in_default>1</show_in_default>
@@ -33,6 +34,7 @@
                         </server>
                         <port>
                             <label>Gearman Server Port</label>
+                            <comment>If you have more than one server and they are on different ports you will need to add a comma separated list of all ports.  If they all run on the same port, only one port number is needed.</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>2</sort_order>
                             <show_in_default>1</show_in_default>

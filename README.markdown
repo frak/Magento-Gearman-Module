@@ -1,7 +1,7 @@
 Ibuildings Gearman Module
 =========================
 
-Pre-requisites:
+Pre-requisites
 ---------------
 To be able to use this module, you will need to install the Gearman library
 and the PHP Gearman classes.  This is done as follows:
@@ -23,7 +23,7 @@ need to install the gearman job server:
 
     $ sudo apt-get install gearman-job-server
 
-Using the module:
+Using the module
 -----------------
 Once you have installed the module, you will need to configure it so that it
 knows where how to connect to your job server(s).  This is done view the Configuration section of the Magento administration section.
@@ -101,3 +101,10 @@ Should you prefer to call a function in an object, statically of course, then
 you need to pass an array into the addFunction() method as follows:
 
     $worker->addFunction('test', array('MyStaticClass', 'workerMethod'));
+
+Unit Tests
+----------
+In order to be able to run the Unit tests for this module, you will need to
+have configured the module in Magento (I will be working on removing this
+dependency), and you will also need to have installed and setup the Ibuildings
+Mage_Test module, available on [GitHub](https://github.com/ibuildings/Mage_Test)

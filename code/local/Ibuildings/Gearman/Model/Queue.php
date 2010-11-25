@@ -92,4 +92,35 @@ class Ibuildings_Gearman_Model_Queue extends Mage_Core_Model_Abstract
             return null;
         }
     }
+
+    /**
+     * Check the status of the job
+     *
+     * @param string $id The unique Gearman job ID
+     */
+    public function checkJobStatus($id)
+    {
+        if (get_class($this->_client) !== 'Net_Gearman_Client') {
+            $status = $this->_client->jobStatus($id);
+            $out = '';
+            if ($status[0] && !$status[1]) {
+                $out = 'queued';
+            }
+            else if ($status[0] && $status[1]) {
+                if ($status[2] === 0 && $status[3] === 0) {
+                    $out = 'working';
+                }
+                else {
+                    $out = ((int) $status[2] / $status[3]) * 100;
+                }
+            }
+            else if (!$status[0] && !$status[1]) {
+                $out = 'done';
+            }
+            return $out;
+        }
+        else {
+            return null;
+        }
+    }
 }

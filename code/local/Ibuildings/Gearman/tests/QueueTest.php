@@ -3,6 +3,7 @@
 class QueueTest extends Ibuildings_Mage_Test_PHPUnit_ControllerTestCase
 {
     private $_queue;
+    const BASE_URL = 'http://magento.development.local';
     
     public function setUp()
     {
@@ -17,7 +18,7 @@ class QueueTest extends Ibuildings_Mage_Test_PHPUnit_ControllerTestCase
         $t['task']     = array(
             'id'       => 1234,
             'payload'  => 'This is a string!',
-            'callback' => 'http://magento.development.local/index.php'
+            'callback' => self::BASE_URL . '/index.php'
         );
         return $t;
     }
@@ -41,6 +42,23 @@ class QueueTest extends Ibuildings_Mage_Test_PHPUnit_ControllerTestCase
             }
             while (!$ret);
             $this->assertTrue($ret);
+        }
+    }
+
+    public function testCheckJobStatusReturnsTheRightValues()
+    {
+        $id = $this->_queue->dispatchTask($this->getTask());
+        if (!is_null($id)) {
+            do {
+                $ret = $this->_queue->checkJobStatus($id);
+                if ($ret !== 'done' && $ret !== 'queued') {
+                    $this->assertGreaterThanOrEqual(0, $ret);
+                    $this->assertLessThanOrEqual(100, $ret);
+                }
+                sleep(1);
+            }
+            while ($ret !== 'done');
+            $this->assertTrue($ret === 'done');
         }
     }
 }

@@ -37,6 +37,7 @@ class Ibuildings_Gearman_Model_Queue extends Mage_Core_Model_Abstract
         for ($i = 0; $i < $count; ++$i) {
             $servers[$i] .= ':' . (($onePort) ? $ports[0] : $ports[$i]);
         }
+
         if (class_exists('Net_Gearman_Client')) {
             $this->_client = new Net_Gearman_Client($servers);
         }
@@ -51,8 +52,8 @@ class Ibuildings_Gearman_Model_Queue extends Mage_Core_Model_Abstract
     /**
      * Send the job to the queue specified
      *
-     * @param array $task Array containing the 'queue' name and the job 'workload'
-     * @return string|false The Gearman ID for the submitted task if the gearman extension is used
+     * @param array $task Array containing the 'queue' name and the task
+     * @return string|false The ID for the submitted task if the gearman extension is used
      */
     public function dispatchTask($task)
     {

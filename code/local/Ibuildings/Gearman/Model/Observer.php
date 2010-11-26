@@ -7,7 +7,6 @@
  * @version 0.1.0
  * @package Ibuildings
  * @subpackage Gearman
- * @license https://github.com/ibuildings/Magento-Gearman-Module/blob/master/LICENCE
  */
 class Ibuildings_Gearman_Model_Observer
 {

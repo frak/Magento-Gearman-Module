@@ -70,6 +70,11 @@ queue and may contain any arbitrary data.  In the  examples given above, there
 is an ID, some data and an optional callback URI, however, this is entirely up
 to the specifics of your implementation.
 
+Using the same structure, you can also submit a blocking method to a queue by
+using the blockingCall() method.
+
+    $ret = $queue->blockingCall($task);
+
 An example, if not very functional, worker is shown below as an demo of how
 you might go about implementing a simple standalone worker based on using the Gearman extension and not the Net_Gearman classes:
 

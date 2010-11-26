@@ -9,6 +9,10 @@ class QueueTest extends Ibuildings_Mage_Test_PHPUnit_ControllerTestCase
     {
         $this->mageBootstrap();
         $this->_queue = Mage::getModel('Ibuildings_Gearman_Model_Queue');
+        $opts = array(
+            'gearman' => array('server' => '127.0.0.1', 'port' => 4730)
+        );
+        $this->_queue->setGearmanClient($opts);
     }
     
     public function getTask()

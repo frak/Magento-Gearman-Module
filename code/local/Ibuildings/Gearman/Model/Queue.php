@@ -24,12 +24,26 @@ class Ibuildings_Gearman_Model_Queue extends Mage_Core_Model_Abstract
     /**
      * Constructor
      *
-     * Reads the server details from config and creates the GearmanClient
-     * object and connects to the queue server
+     * Just calls setGearmanClient() for default instantiation
+     * @see setGearmanClient()
      */
     public function __construct()
     {
-        $opts    = Mage::getStoreConfig('gearman_options');
+        $this->setGearmanClient();
+    }
+
+    /**
+     * Sets the Gearman object according to config options
+     *
+     * Reads the server details from config and creates the GearmanClient
+     * object and connects to the queue server
+     * @param array $opts Configuration options
+     */
+    public function setGearmanClient($opts = null)
+    {
+        if (is_null($opts)) {
+            $opts    = Mage::getStoreConfig('gearman_options');
+        }
         $servers = explode(',', $opts['gearman']['server']);
         $ports   = explode(',', $opts['gearman']['port']);
         $count   = count($servers);

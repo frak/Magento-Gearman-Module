@@ -12,7 +12,6 @@ if (!class_exists('GearmanClient')) {
  * @version 0.1.0
  * @package Ibuildings
  * @subpackage Gearman
- * @license https://github.com/ibuildings/Magento-Gearman-Module/blob/master/LICENCE
  */
 class Ibuildings_Gearman_Model_Queue extends Mage_Core_Model_Abstract
 {
@@ -133,6 +132,30 @@ class Ibuildings_Gearman_Model_Queue extends Mage_Core_Model_Abstract
                 $out = 'done';
             }
             return $out;
+        }
+        else {
+            return null;
+        }
+    }
+    
+    /**
+     *
+     */
+    public function blockingCall($task)
+    {
+        if (get_class($this->_client) !== 'Net_Gearman_Client') {
+            do {
+                $ret = $this->_client->do($task['queue'], $task['task']);
+                $code = $this->_client->returnCode();
+            }
+            while ($code !== GEARMAN_SUCCESS && $code !== GEARMAN_FAILURE);
+            
+            if ($code === GEARMAN_FAILURE) {
+                return null;
+            }
+            else {
+                return unserialize($ret);
+            }
         }
         else {
             return null;

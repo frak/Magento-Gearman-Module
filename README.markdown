@@ -104,9 +104,8 @@ you need to pass an array into the addFunction() method as follows:
 
 Unit Tests
 ----------
-In order to be able to run the Unit tests for this module, you will need to
-have configured the module in Magento (I will be working on removing this
-dependency), and you will also need to have installed and setup the Ibuildings
-Mage_Test module, available on [GitHub](/ibuildings/Mage_Test).  Once you have
-this setup, you will need to change the BASE_URL constant in QueueTest.php to
-reflect your development server.
+In order to be able to run the Unit tests for this module, you will also need 
+to have installed and setup the Ibuildings Mage_Test module, available on 
+[GitHub](/ibuildings/Mage_Test).  Once you have this setup, you will need to
+change the BASE_URL constant in QueueTest.php to reflect your development
+server.

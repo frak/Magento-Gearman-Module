@@ -71,7 +71,10 @@ is an ID, some data and an optional callback URI, however, this is entirely up
 to the specifics of your implementation.
 
 Using the same structure, you can also submit a blocking method to a queue by
-using the blockingCall() method.
+using the blockingCall() method. This will return the results of your function
+call directly.  Due to the limitations of Net_Gearman this is not available
+unless you are using the Gearman extension.
+
 
     $ret = $queue->blockingCall($task);
 

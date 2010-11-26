@@ -11,6 +11,6 @@ class ObserverTest extends Ibuildings_Mage_Test_PHPUnit_ControllerTestCase
             'payload' => 'This is a string!',
             'callback' => 'http://magento.development.local/index.php'
         );
-        Mage::dispatchEvent('do_async_task', $e);
+        Mage::dispatchEvent('gearman_do_async_task', $e);
     }
 }

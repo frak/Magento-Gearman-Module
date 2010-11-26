@@ -42,7 +42,7 @@ class Ibuildings_Gearman_Model_Queue extends Mage_Core_Model_Abstract
     public function setGearmanClient($opts = null)
     {
         if (is_null($opts)) {
-            $opts    = Mage::getStoreConfig('gearman_options');
+            $opts = Mage::getStoreConfig('gearman_options');
         }
         $servers = explode(',', $opts['gearman']['server']);
         $ports   = explode(',', $opts['gearman']['port']);

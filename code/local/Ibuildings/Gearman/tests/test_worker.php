@@ -4,7 +4,7 @@
 
 $worker = new GearmanWorker();
 $worker->addServer('127.0.0.1', 4730);
-$worker->addFunction('test', 'test_fn');
+$worker->addFunction('test', 'quick_test_fn');
 
 echo "Waiting for work...\n";
 while ($worker->work()) {
@@ -32,5 +32,17 @@ function test_fn($job)
     }
     $job->sendStatus(2, 2);
     sleep(1);
+    return serialize($stuff);
+}
+
+function quick_test_fn($job)
+{
+    $stuff = unserialize($job->workload());
+    file_put_contents(
+        './testing.log',
+        $stuff['id'] . ' - ' . $stuff['payload'] . PHP_EOL,
+        FILE_APPEND
+    );
+    $stuff['payload'] = strrev($stuff['payload']);
     return serialize($stuff);
 }

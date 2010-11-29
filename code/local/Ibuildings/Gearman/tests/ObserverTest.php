@@ -4,7 +4,7 @@ class ObserverTest extends Ibuildings_Mage_Test_PHPUnit_ControllerTestCase
 {
     public function testDispatchTask()
     {
-        $ps = explode("\n", `ps ax | grep test_worker`);
+        $ps = explode(PHP_EOL, `ps ax | grep test_worker`);
         $found = false;
         foreach ($ps as $line) {
             if (preg_match('/php test_worker\.php/', $line)) {
@@ -13,10 +13,10 @@ class ObserverTest extends Ibuildings_Mage_Test_PHPUnit_ControllerTestCase
             }
         }
         $this->assertTrue($found);
-        $e          = array();
-        $e['queue'] = 'test';
         $id         = uniqid();
         $data       = 'This is a string!';
+        $e          = array();
+        $e['queue'] = 'test';
         $e['task']  = array(
             'id' => $id,
             'payload' => $data,

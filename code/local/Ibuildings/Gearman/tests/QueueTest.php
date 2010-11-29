@@ -70,15 +70,9 @@ class QueueTest extends Ibuildings_Mage_Test_PHPUnit_ControllerTestCase
     {
         $ret = $this->_queue->blockingCall($this->getTask());
         if (!class_exists('GearmanClient')) {
-            /*
-            $this->markTestIncomplete(
-                'This test only applies to the Gearman extension'
-            );
-            */
             $this->assertNull($ret);
         }
         else{
-            print_r($ret);
             $this->assertTrue($ret['payload'] == '!gnirts a si sihT');
         }
     }

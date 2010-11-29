@@ -145,7 +145,10 @@ class Ibuildings_Gearman_Model_Queue extends Mage_Core_Model_Abstract
     {
         if (get_class($this->_client) !== 'Net_Gearman_Client') {
             do {
-                $ret = $this->_client->do($task['queue'], $task['task']);
+                $ret = $this->_client->do(
+                    $task['queue'],
+                    serialize($task['task'])
+                );
                 $code = $this->_client->returnCode();
             }
             while ($code !== GEARMAN_SUCCESS && $code !== GEARMAN_FAILURE);

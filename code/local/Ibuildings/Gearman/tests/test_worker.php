@@ -1,10 +1,12 @@
 <?php
 
-@unlink('./gearman_testing.log');
+require_once './bootstrap.php';
+
+@unlink(LOG_PATH . 'gearman_testing.log');
 
 $worker = new GearmanWorker();
 $worker->addServer('127.0.0.1', 4730);
-$worker->addFunction('test', 'quick_test_fn');
+$worker->addFunction('test', 'test_fn');
 
 echo "Waiting for work...\n";
 while ($worker->work()) {
@@ -20,7 +22,7 @@ function test_fn($job)
     $job->sendStatus(0, 2);
     $stuff = unserialize($job->workload());
     file_put_contents(
-        './gearman_testing.log',
+        LOG_PATH . 'gearman_testing.log',
         $stuff['id'] . ' - ' . $stuff['payload'] . PHP_EOL,
         FILE_APPEND
     );
@@ -39,7 +41,7 @@ function quick_test_fn($job)
 {
     $stuff = unserialize($job->workload());
     file_put_contents(
-        './gearman_testing.log',
+        LOG_PATH . 'gearman_testing.log',
         $stuff['id'] . ' - ' . $stuff['payload'] . PHP_EOL,
         FILE_APPEND
     );

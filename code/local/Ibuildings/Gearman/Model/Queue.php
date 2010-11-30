@@ -77,6 +77,10 @@ class Ibuildings_Gearman_Model_Queue extends Mage_Core_Model_Abstract
 
     /**
      * Send the job to the queue specified
+     * <code>
+     * $queue = Mage::getModel('gearman/queue');
+     * $id = $queue->dispatchTask($task);
+     * </code>
      *
      * @param array $task Array containing the 'queue' name and the task
      * @return string|false The ID for the submitted task if the Gearman extension is used
@@ -103,7 +107,12 @@ class Ibuildings_Gearman_Model_Queue extends Mage_Core_Model_Abstract
     }
 
     /**
-     * Check the status of a previously submitted job
+     * Check whether a previously submitted job has completed
+     * <code>
+     * if ($queue->checkTaskComplete($id)) {
+     *     // works has been done
+     * }
+     * </code>
      *
      * @param string $id The unique Gearman job ID
      * @return boolean Whether task is complete or not
@@ -120,9 +129,16 @@ class Ibuildings_Gearman_Model_Queue extends Mage_Core_Model_Abstract
     }
 
     /**
-     * Check the status of a submitted job
+     * Check the status of a previously submitted job
+     * <code>
+     * while (($status = $queue->checkJobStatus($id)) !== 'done') {
+     *     echo "$status% complete\n";
+     *     sleep(1);
+     * }
+     * </code>
      *
      * @param string $id The unique Gearman job ID
+     * @return null|string
      */
      public function checkJobStatus($id)
      {
@@ -165,8 +181,11 @@ class Ibuildings_Gearman_Model_Queue extends Mage_Core_Model_Abstract
 
     /**
      * Calls a Gearman task and waits for it's return value
+     * <code>
+     * $ret = $queue->blockingCall($task);
+     * </code>
      *
-     * @return array|null the results from the task or null
+     * @return array|null The results from the task
      */
     public function blockingCall($task)
     {

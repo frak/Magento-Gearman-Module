@@ -15,6 +15,9 @@ class Ibuildings_Gearman_Model_Observer
      *
      * Takes the event and sends it through to the model object
      * for processing
+     * <code>
+     * Made::DispatchEvent('gearman_do_async_task');
+     * </code>
      *
      * @param array $event Array containing the 'queue' name and the job 'workload'
      */

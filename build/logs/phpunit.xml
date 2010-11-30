@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="Gearman Tests" tests="5" assertions="18" failures="0" errors="0" time="41.041303">
+    <testsuite name="ObserverTest" file="/mnt/hgfs/Sites/Magento-Gearman-Module/code/local/Ibuildings/Gearman/tests/ObserverTest.php" tests="1" assertions="2" failures="0" errors="0" time="8.869043">
+      <testcase name="testDispatchTask" class="ObserverTest" file="/mnt/hgfs/Sites/Magento-Gearman-Module/code/local/Ibuildings/Gearman/tests/ObserverTest.php" line="5" assertions="2" time="8.869043"/>
+    </testsuite>
+    <testsuite name="QueueTest" file="/mnt/hgfs/Sites/Magento-Gearman-Module/code/local/Ibuildings/Gearman/tests/QueueTest.php" tests="4" assertions="16" failures="0" errors="0" time="32.172260">
+      <testcase name="testSubmitJobReturnsId" class="QueueTest" file="/mnt/hgfs/Sites/Magento-Gearman-Module/code/local/Ibuildings/Gearman/tests/QueueTest.php" line="60" assertions="5" time="7.365124"/>
+      <testcase name="testCheckTaskCompleteReturnsTrueWhenDone" class="QueueTest" file="/mnt/hgfs/Sites/Magento-Gearman-Module/code/local/Ibuildings/Gearman/tests/QueueTest.php" line="80" assertions="4" time="8.650646"/>
+      <testcase name="testCheckJobStatusReturnsTheRightValues" class="QueueTest" file="/mnt/hgfs/Sites/Magento-Gearman-Module/code/local/Ibuildings/Gearman/tests/QueueTest.php" line="98" assertions="4" time="8.503212"/>
+      <testcase name="testBlockingTaskReturnsResults" class="QueueTest" file="/mnt/hgfs/Sites/Magento-Gearman-Module/code/local/Ibuildings/Gearman/tests/QueueTest.php" line="120" assertions="3" time="7.653278"/>
+    </testsuite>
+  </testsuite>
+</testsuites>

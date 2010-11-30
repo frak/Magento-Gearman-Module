@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class Ibuildings_Gearman_Model_Queue</title>
+			<link rel="stylesheet" href="../../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class Ibuildings_Gearman_Model_Queue</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+															<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Ibuildings Gearman Magento Model Observer</p>
+	<ul class="tags">
+				<li><span class="field">author:</span> Michael Davey</li>
+				<li><span class="field">version:</span> 0.1.0</li>
+				<li><span class="field">copyright:</span> (c) 2010 Ibuildings UK Ltd.</li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="_Queue.php.html">/Queue.php</a> (line <span class="field">16</span>)
+		</p>
+		
+				
+		<pre>Mage_Core_Model_Abstract
+   |
+   --Ibuildings_Gearman_Model_Queue</pre>
+	
+			</div>
+</div>
+
+
+
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+												<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+																																																												
+												<div class="method-definition">
+											<span class="method-result">Ibuildings_Gearman_Model_Queue</span>
+										<a href="#__construct" title="details" class="method-name">__construct</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">array|null</span>
+										<a href="#blockingCall" title="details" class="method-name">blockingCall</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$task</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#checkJobStatus" title="details" class="method-name">checkJobStatus</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$id</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">boolean</span>
+										<a href="#checkTaskComplete" title="details" class="method-name">checkTaskComplete</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$id</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string|false</span>
+										<a href="#dispatchTask" title="details" class="method-name">dispatchTask</a>
+											(<span class="var-type">array</span>&nbsp;<span class="var-name">$task</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">GearmanClient|Net_Gearman_Client</span>
+										<a href="#getGearmanClient" title="details" class="method-name">getGearmanClient</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setGearmanClient" title="details" class="method-name">setGearmanClient</a>
+											([<span class="var-type">array</span>&nbsp;<span class="var-name">$opts</span> = <span class="var-default">null</span>])
+									</div>
+								</div>
+		</div>
+	</div>		
+
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+																<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+
+<a name="method__construct" id="__construct"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">Constructor __construct</span> (line <span class="line-number">30</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Constructor</p>
+<p class="description"><p>Just calls setGearmanClient() for default instantiation</p></p>
+	<ul class="tags">
+				<li><span class="field">see:</span> <a href="../../Ibuildings/Gearman/Ibuildings_Gearman_Model_Queue.html#methodsetGearmanClient">Ibuildings_Gearman_Model_Queue::setGearmanClient()</a></li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">Ibuildings_Gearman_Model_Queue</span>
+		<span class="method-name">
+			__construct
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodblockingCall" id="blockingCall"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">blockingCall</span> (line <span class="line-number">172</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Calls a Gearman task and waits for it's return value</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> the results from the task or null</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array|null</span>
+		<span class="method-name">
+			blockingCall
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$task</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$task</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodcheckJobStatus" id="checkJobStatus"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">checkJobStatus</span> (line <span class="line-number">128</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Check the status of a submitted job</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			checkJobStatus
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$id</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$id</span><span class="var-description">: The unique Gearman job ID</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodcheckTaskComplete" id="checkTaskComplete"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">checkTaskComplete</span> (line <span class="line-number">112</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Check the status of a previously submitted job</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> Whether task is complete or not</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">boolean</span>
+		<span class="method-name">
+			checkTaskComplete
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$id</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$id</span><span class="var-description">: The unique Gearman job ID</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddispatchTask" id="dispatchTask"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">dispatchTask</span> (line <span class="line-number">85</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Send the job to the queue specified</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> The ID for the submitted task if the Gearman extension is used</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string|false</span>
+		<span class="method-name">
+			dispatchTask
+		</span>
+					(<span class="var-type">array</span>&nbsp;<span class="var-name">$task</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$task</span><span class="var-description">: Array containing the 'queue' name and the task</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetGearmanClient" id="getGearmanClient"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getGearmanClient</span> (line <span class="line-number">74</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns the current client object used for dispatching messages</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> The client being used</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">GearmanClient|Net_Gearman_Client</span>
+		<span class="method-name">
+			getGearmanClient
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodsetGearmanClient" id="setGearmanClient"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setGearmanClient</span> (line <span class="line-number">42</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sets the Gearman object according to config options</p>
+<p class="description"><p>Reads the server details from config and creates the GearmanClient  object and connects to the queue server</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setGearmanClient
+		</span>
+					([<span class="var-type">array</span>&nbsp;<span class="var-name">$opts</span> = <span class="var-default">null</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$opts</span><span class="var-description">: Configuration options</span>			</li>
+				</ul>
+		
+			
+	</div>
+						
+		</div>
+	</div>
+
+
+	<p class="notes" id="credit">
+		Documentation generated on Tue, 30 Nov 2010 05:44:19 -0800 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</div></body>
+</html>

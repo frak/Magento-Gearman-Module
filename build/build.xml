@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Magento Gearman Module" default="build" basedir="..">
+
+    <target name="build" depends="clean,prepare,phpcs,phpmd,phpcpd,pdepend,phpunit,phpdoc"/>
+
+    <target name="clean">
+        <delete dir="${basedir}/build/logs"/>
+        <delete dir="${basedir}/build/api"/>
+        <delete dir="${basedir}/build/coverage"/>
+    </target>
+
+    <target name="prepare">
+        <mkdir dir="${basedir}/build/logs"/>
+        <mkdir dir="${basedir}/build/api"/>
+        <mkdir dir="${basedir}/build/coverage"/>
+    </target>
+
+    <target name="phpdoc">
+        <exec dir="${basedir}/code/local/Ibuildings/Gearman/Model" executable="phpdoc" logerror="on">
+            <arg line="-ti '${ant.project.name}'
+                       -ue on
+                       -d '${basedir}/code/local/Ibuildings/Gearman/Model'
+                       -t '${basedir}/build/api'"/>
+        </exec>
+    </target>
+
+    <target name="phpcs">
+        <exec dir="${basedir}" executable="phpcs" output="${basedir}/build/logs/checkstyle.xml" failonerror="false">
+            <arg line="--report=checkstyle
+                       --standard=Zend
+                       --extensions=php
+                       --report-file='${basedir}/build/logs/checkstyle.xml'
+                       code/local/Ibuildings/Gearman"/>
+        </exec>
+    </target>
+    <target name="phpmd">
+        <exec dir="${basedir}" executable="phpmd" failonerror="false">
+            <arg line="code/local/Ibuildings/Gearman/Model xml codesize
+                       --reportfile ${basedir}/build/logs/pmd.xml"/>
+        </exec>
+    </target>
+    <target name="phpcpd">
+        <exec dir="${basedir}" executable="phpcpd" failonerror="false">
+            <arg line="--log-pmd ${basedir}/build/logs/pmd-cpd.xml
+                       code/local/Ibuildings/Gearman/Model"/>
+        </exec>
+    </target>
+    <target name="pdepend">
+        <exec dir="${basedir}" executable="pdepend" failonerror="false">
+            <arg line="--jdepend-xml=${basedir}/build/logs/jdepend.xml
+                       code/local/Ibuildings/Gearman/Model"/>
+        </exec>
+    </target>
+    <target name="phpunit">
+        <exec dir="${basedir}/code/local/Ibuildings/Gearman/tests/" executable="phpunit" logerror="on" failonerror="true">
+            <arg line="--log-junit '${basedir}/build/logs/phpunit.xml'
+                       --coverage-clover '${basedir}/build/logs/clover.xml'
+                       --coverage-html '${basedir}/build/coverage'" />
+        </exec>
+    </target>
+</project>

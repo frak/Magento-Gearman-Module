@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PDepend>
+  <Packages>
+    <Package name="Ibuildings\Gearman">
+      <Stats>
+        <TotalClasses>2</TotalClasses>
+        <ConcreteClasses>2</ConcreteClasses>
+        <AbstractClasses>0</AbstractClasses>
+        <Ca>0</Ca>
+        <Ce>2</Ce>
+        <A>0</A>
+        <I>1</I>
+        <D>0</D>
+      </Stats>
+      <ConcreteClasses>
+        <Class sourceFile="/mnt/hgfs/Sites/Magento-Gearman-Module/code/local/Ibuildings/Gearman/Model/Observer.php">Ibuildings_Gearman_Model_Observer</Class>
+        <Class sourceFile="/mnt/hgfs/Sites/Magento-Gearman-Module/code/local/Ibuildings/Gearman/Model/Queue.php">Ibuildings_Gearman_Model_Queue</Class>
+      </ConcreteClasses>
+      <AbstractClasses/>
+      <DependsUpon>
+        <Package>+gearman</Package>
+        <Package>+global</Package>
+      </DependsUpon>
+      <UsedBy/>
+    </Package>
+  </Packages>
+  <Cycles/>
+</PDepend>

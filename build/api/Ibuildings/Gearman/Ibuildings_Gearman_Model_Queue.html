@@ -65,12 +65,12 @@
 																<div class="method-definition">
 											<span class="method-result">null|string</span>
 										<a href="#checkJobStatus" title="details" class="method-name">checkJobStatus</a>
-											(<span class="var-type">string</span>&nbsp;<span class="var-name">$id</span>)
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$jobId</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$id</span>)
 									</div>
 																<div class="method-definition">
 											<span class="method-result">boolean</span>
 										<a href="#checkTaskComplete" title="details" class="method-name">checkTaskComplete</a>
-											(<span class="var-type">string</span>&nbsp;<span class="var-name">$id</span>)
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$jobId</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$id</span>)
 									</div>
 																<div class="method-definition">
 											<span class="method-result">string|false</span>
@@ -183,13 +183,16 @@
 		<span class="method-name">
 			checkJobStatus
 		</span>
-					(<span class="var-type">string</span>&nbsp;<span class="var-name">$id</span>)
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$jobId</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$id</span>)
 			</div>
 	
 			<ul class="parameters">
 					<li>
 				<span class="var-type">string</span>
 				<span class="var-name">$id</span><span class="var-description">: The unique Gearman job ID</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$jobId</span>			</li>
 				</ul>
 		
 			
@@ -217,13 +220,16 @@
 		<span class="method-name">
 			checkTaskComplete
 		</span>
-					(<span class="var-type">string</span>&nbsp;<span class="var-name">$id</span>)
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$jobId</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$id</span>)
 			</div>
 	
 			<ul class="parameters">
 					<li>
 				<span class="var-type">string</span>
 				<span class="var-name">$id</span><span class="var-description">: The unique Gearman job ID</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$jobId</span>			</li>
 				</ul>
 		
 			
@@ -322,7 +328,7 @@
 
 
 	<p class="notes" id="credit">
-		Documentation generated on Tue, 30 Nov 2010 07:41:23 -0800 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+		Documentation generated on Tue, 30 Nov 2010 07:58:53 -0800 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
 	</p>
 	</div></body>
 </html>

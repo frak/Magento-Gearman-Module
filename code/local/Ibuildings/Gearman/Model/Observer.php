@@ -13,7 +13,7 @@ class Ibuildings_Gearman_Model_Observer
     /**
      * Send the job to the model
      *
-     * Takes the event and send it through to the model object
+     * Takes the event and sends it through to the model object
      * for processing
      *
      * @param array $event Array containing the 'queue' name and the job 'workload'

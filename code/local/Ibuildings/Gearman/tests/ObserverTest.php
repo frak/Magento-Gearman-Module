@@ -7,12 +7,19 @@ class ObserverTest extends Ibuildings_Mage_Test_PHPUnit_ControllerTestCase
         $ps = explode(PHP_EOL, `ps ax | grep test_worker`);
         $found = false;
         foreach ($ps as $line) {
-            if (preg_match('/php test_worker\.php/', $line)) {
+            if (preg_match('/test_worker\.php/', $line)) {
                 $found = true;
                 break;
             }
         }
+        if (!$found) {
+            $this->fail(
+                'You need to have started test_worker.php from the ' .
+                'tests directory'
+            );
+        }
         $this->assertTrue($found);
+
         $id         = uniqid();
         $data       = 'This is a string!';
         $e          = array();
@@ -22,9 +29,13 @@ class ObserverTest extends Ibuildings_Mage_Test_PHPUnit_ControllerTestCase
             'payload' => $data,
             'callback' => 'http://magento.development.local/index.php'
         );
+
         Mage::dispatchEvent('gearman_do_async_task', $e);
         sleep(1);
-        $log = explode(PHP_EOL, file_get_contents('./testing.log'));
+        $log = explode(
+            PHP_EOL,
+            file_get_contents(LOG_PATH . 'gearman_testing.log')
+        );
         $res = preg_match(
             '/' . $id . ' \- ' . $data . '/',
             $log[count($log) - 2]

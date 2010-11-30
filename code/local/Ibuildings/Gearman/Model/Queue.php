@@ -117,10 +117,10 @@ class Ibuildings_Gearman_Model_Queue extends Mage_Core_Model_Abstract
      * @param string $id The unique Gearman job ID
      * @return boolean Whether task is complete or not
      */
-    public function checkTaskComplete($id)
+    public function checkTaskComplete($jobId)
     {
         if (get_class($this->_client) !== 'Net_Gearman_Client') {
-            $status = $this->_client->jobStatus($id);
+            $status = $this->_client->jobStatus($jobId);
             return !$status[0];
         }
         else {
@@ -140,10 +140,10 @@ class Ibuildings_Gearman_Model_Queue extends Mage_Core_Model_Abstract
      * @param string $id The unique Gearman job ID
      * @return null|string
      */
-     public function checkJobStatus($id)
+     public function checkJobStatus($jobId)
      {
          if (get_class($this->_client) !== 'Net_Gearman_Client') {
-             $status = $this->_client->jobStatus($id);
+             $status = $this->_client->jobStatus($jobId);
              return $this->_getJobStatus($status);
          }
          else {

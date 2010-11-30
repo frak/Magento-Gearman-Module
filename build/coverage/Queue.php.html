@@ -77,12 +77,12 @@
           <td class="coverBar" align="center" width="100">
             <table border="0" cellspacing="0" cellpadding="1">
               <tr>
-                <td class="coverBarOutline"><img src="chameleon.png" width="85" height="10" alt="85.71%"><img src="snow.png" width="15" height="10" alt="85.71%"></td>
+                <td class="coverBarOutline"><img src="chameleon.png" width="90" height="10" alt="90.00%"><img src="snow.png" width="10" height="10" alt="90.00%"></td>
               </tr>
             </table>
           </td>
-          <td class="coverPerHi">85.71%</td>
-          <td class="coverNumHi">60 / 70</td>
+          <td class="coverPerHi">90.00%</td>
+          <td class="coverNumHi">63 / 70</td>
         </tr>
 
         <tr>
@@ -112,12 +112,12 @@
           <td class="coverBar" align="center" width="100">
             <table border="0" cellspacing="0" cellpadding="1">
               <tr>
-                <td class="coverBarOutline"><img src="chameleon.png" width="88" height="10" alt="88.06%"><img src="snow.png" width="12" height="10" alt="88.06%"></td>
+                <td class="coverBarOutline"><img src="chameleon.png" width="92" height="10" alt="92.54%"><img src="snow.png" width="8" height="10" alt="92.54%"></td>
               </tr>
             </table>
           </td>
-          <td class="coverPerHi">88.06%</td>
-          <td class="coverNumHi">59 / 67</td>
+          <td class="coverPerHi">92.54%</td>
+          <td class="coverNumHi">62 / 67</td>
         </tr>
 
         <tr>
@@ -213,7 +213,7 @@
         </tr>
 
         <tr>
-          <td class="coverFile" colspan="4">&nbsp;<a href="#120">checkTaskComplete($id)</a></td>
+          <td class="coverFile" colspan="4">&nbsp;<a href="#120">checkTaskComplete($jobId)</a></td>
           <td class="coverBar" align="center" width="100">
             <table border="0" cellspacing="0" cellpadding="1">
               <tr>
@@ -236,7 +236,7 @@
         </tr>
 
         <tr>
-          <td class="coverFile" colspan="4">&nbsp;<a href="#143">checkJobStatus($id)</a></td>
+          <td class="coverFile" colspan="4">&nbsp;<a href="#143">checkJobStatus($jobId)</a></td>
           <td class="coverBar" align="center" width="100">
             <table border="0" cellspacing="0" cellpadding="1">
               <tr>
@@ -269,16 +269,16 @@
           </td>
           <td class="coverPerLo">0.00%</td>
           <td class="coverNumLo">0 / 1</td>
-          <td class="crap">19.12</td>
+          <td class="crap">10.89</td>
           <td class="coverBar" align="center" width="100">
             <table border="0" cellspacing="0" cellpadding="1">
               <tr>
-                <td class="coverBarOutline"><img src="butter.png" width="50" height="10" alt="50.00%"><img src="snow.png" width="50" height="10" alt="50.00%"></td>
+                <td class="coverBarOutline"><img src="chameleon.png" width="71" height="10" alt="71.43%"><img src="snow.png" width="29" height="10" alt="71.43%"></td>
               </tr>
             </table>
           </td>
-          <td class="coverPerMed">50.00%</td>
-          <td class="coverNumMed">7 / 14</td>
+          <td class="coverPerHi">71.43%</td>
+          <td class="coverNumHi">10 / 14</td>
         </tr>
 
         <tr>
@@ -436,10 +436,10 @@
 <span class="lineNum" id="container117"><a name="117"></a><a href="#117" id="line117">     117</a> </span>                :      * @param string $id The unique Gearman job ID                                        
 <span class="lineNum" id="container118"><a name="118"></a><a href="#118" id="line118">     118</a> </span>                :      * @return boolean Whether task is complete or not                                    
 <span class="lineNum" id="container119"><a name="119"></a><a href="#119" id="line119">     119</a> </span>                :      */                                                                                   
-<span class="lineNum" id="container120"><a name="120"></a><a href="#120" id="line120">     120</a> </span>                :     public function checkTaskComplete($id)                                                
+<span class="lineNum" id="container120"><a name="120"></a><a href="#120" id="line120">     120</a> </span>                :     public function checkTaskComplete($jobId)                                             
 <span class="lineNum" id="container121"><a name="121"></a><a href="#121" id="line121">     121</a> </span>                :     {                                                                                     
 <span class="lineNum" id="container122"><a name="122"></a><a href="#122" id="line122">     122</a> </span><span class="lineCov">              1 :         if (get_class($this-&gt;_client) !== 'Net_Gearman_Client') {                         </span>
-<span class="lineNum" id="container123"><a name="123"></a><a href="#123" id="line123">     123</a> </span><span class="lineCov">              1 :             $status = $this-&gt;_client-&gt;jobStatus($id);                                     </span>
+<span class="lineNum" id="container123"><a name="123"></a><a href="#123" id="line123">     123</a> </span><span class="lineCov">              1 :             $status = $this-&gt;_client-&gt;jobStatus($jobId);                                  </span>
 <span class="lineNum" id="container124"><a name="124"></a><a href="#124" id="line124">     124</a> </span><span class="lineCov">              1 :             return !$status[0];                                                           </span>
 <span class="lineNum" id="container125"><a name="125"></a><a href="#125" id="line125">     125</a> </span><span class="lineDeadCode">                :         }                                                                                 </span>
 <span class="lineNum" id="container126"><a name="126"></a><a href="#126" id="line126">     126</a> </span>                :         else {                                                                            
@@ -459,10 +459,10 @@
 <span class="lineNum" id="container140"><a name="140"></a><a href="#140" id="line140">     140</a> </span>                :      * @param string $id The unique Gearman job ID                                        
 <span class="lineNum" id="container141"><a name="141"></a><a href="#141" id="line141">     141</a> </span>                :      * @return null|string                                                                
 <span class="lineNum" id="container142"><a name="142"></a><a href="#142" id="line142">     142</a> </span>                :      */                                                                                   
-<span class="lineNum" id="container143"><a name="143"></a><a href="#143" id="line143">     143</a> </span>                :      public function checkJobStatus($id)                                                  
+<span class="lineNum" id="container143"><a name="143"></a><a href="#143" id="line143">     143</a> </span>                :      public function checkJobStatus($jobId)                                               
 <span class="lineNum" id="container144"><a name="144"></a><a href="#144" id="line144">     144</a> </span>                :      {                                                                                    
 <span class="lineNum" id="container145"><a name="145"></a><a href="#145" id="line145">     145</a> </span><span class="lineCov">              1 :          if (get_class($this-&gt;_client) !== 'Net_Gearman_Client') {                        </span>
-<span class="lineNum" id="container146"><a name="146"></a><a href="#146" id="line146">     146</a> </span><span class="lineCov">              1 :              $status = $this-&gt;_client-&gt;jobStatus($id);                                    </span>
+<span class="lineNum" id="container146"><a name="146"></a><a href="#146" id="line146">     146</a> </span><span class="lineCov">              1 :              $status = $this-&gt;_client-&gt;jobStatus($jobId);                                 </span>
 <span class="lineNum" id="container147"><a name="147"></a><a href="#147" id="line147">     147</a> </span><span class="lineCov">              1 :              return $this-&gt;_getJobStatus($status);                                        </span>
 <span class="lineNum" id="container148"><a name="148"></a><a href="#148" id="line148">     148</a> </span><span class="lineDeadCode">                :          }                                                                                </span>
 <span class="lineNum" id="container149"><a name="149"></a><a href="#149" id="line149">     149</a> </span>                :          else {                                                                           
@@ -485,13 +485,13 @@
 <span class="lineNum" id="container166"><a name="166"></a><a href="#166" id="line166">     166</a> </span><span class="lineNoCov">              0 :              $out = 'queued';                                                             </span>
 <span class="lineNum" id="container167"><a name="167"></a><a href="#167" id="line167">     167</a> </span><span class="lineNoCov">              0 :          }                                                                                </span>
 <span class="lineNum" id="container168"><a name="168"></a><a href="#168" id="line168">     168</a> </span><span class="lineCov">              1 :          else if ($status[0] &amp;&amp; $status[1]) {                                             </span>
-<span class="lineNum" id="container169"><a name="169"></a><a href="#169" id="line169">     169</a> </span><span class="lineNoCov">              0 :              if ($status[2] === 0 &amp;&amp; $status[3] === 0) {                                  </span>
+<span class="lineNum" id="container169"><a name="169"></a><a href="#169" id="line169">     169</a> </span><span class="lineCov">              1 :              if ($status[2] === 0 &amp;&amp; $status[3] === 0) {                                  </span>
 <span class="lineNum" id="container170"><a name="170"></a><a href="#170" id="line170">     170</a> </span><span class="lineNoCov">              0 :                  $out = 'working';                                                        </span>
 <span class="lineNum" id="container171"><a name="171"></a><a href="#171" id="line171">     171</a> </span><span class="lineNoCov">              0 :              }                                                                            </span>
 <span class="lineNum" id="container172"><a name="172"></a><a href="#172" id="line172">     172</a> </span>                :              else {                                                                       
-<span class="lineNum" id="container173"><a name="173"></a><a href="#173" id="line173">     173</a> </span><span class="lineNoCov">              0 :                  $out = ((int) $status[2] / $status[3]) * 100;                            </span>
+<span class="lineNum" id="container173"><a name="173"></a><a href="#173" id="line173">     173</a> </span><span class="lineCov">              1 :                  $out = ((int) $status[2] / $status[3]) * 100;                            </span>
 <span class="lineNum" id="container174"><a name="174"></a><a href="#174" id="line174">     174</a> </span>                :              }                                                                            
-<span class="lineNum" id="container175"><a name="175"></a><a href="#175" id="line175">     175</a> </span><span class="lineNoCov">              0 :          }                                                                                </span>
+<span class="lineNum" id="container175"><a name="175"></a><a href="#175" id="line175">     175</a> </span><span class="lineCov">              1 :          }                                                                                </span>
 <span class="lineNum" id="container176"><a name="176"></a><a href="#176" id="line176">     176</a> </span><span class="lineCov">              1 :          else if (!$status[0] &amp;&amp; !$status[1]) {                                           </span>
 <span class="lineNum" id="container177"><a name="177"></a><a href="#177" id="line177">     177</a> </span><span class="lineCov">              1 :              $out = 'done';                                                               </span>
 <span class="lineNum" id="container178"><a name="178"></a><a href="#178" id="line178">     178</a> </span><span class="lineCov">              1 :          }                                                                                </span>
@@ -537,7 +537,7 @@
 
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
       <tr><td class="ruler"><img src="glass.png" width="3" height="3" alt=""></td></tr>
-      <tr><td class="versionInfo">Generated by <a href="http://github.com/sebastianbergmann/php-code-coverage" target="_top">PHP_CodeCoverage 1.0.2</a> using <a href="http://www.php.net/" target="_top">PHP 5.3.3-1ubuntu9.1</a> and PHPUnit 3.5.5 at Tue Nov 30 15:40:32 UTC 2010.</td></tr>
+      <tr><td class="versionInfo">Generated by <a href="http://github.com/sebastianbergmann/php-code-coverage" target="_top">PHP_CodeCoverage 1.0.2</a> using <a href="http://www.php.net/" target="_top">PHP 5.3.3-1ubuntu9.1</a> and PHPUnit 3.5.5 at Tue Nov 30 15:57:23 UTC 2010.</td></tr>
     </table>
 
     <br />
@@ -774,6 +774,21 @@
         },
         "panel168": {
           "header": "1 test covers line 168",
+          "body": "<ul><li class=\"testPassed\">QueueTest::testCheckJobStatusReturnsTheRightValues</li></ul>",
+          "footer": ""
+        },
+        "panel169": {
+          "header": "1 test covers line 169",
+          "body": "<ul><li class=\"testPassed\">QueueTest::testCheckJobStatusReturnsTheRightValues</li></ul>",
+          "footer": ""
+        },
+        "panel173": {
+          "header": "1 test covers line 173",
+          "body": "<ul><li class=\"testPassed\">QueueTest::testCheckJobStatusReturnsTheRightValues</li></ul>",
+          "footer": ""
+        },
+        "panel175": {
+          "header": "1 test covers line 175",
           "body": "<ul><li class=\"testPassed\">QueueTest::testCheckJobStatusReturnsTheRightValues</li></ul>",
           "footer": ""
         },

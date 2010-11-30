@@ -22,9 +22,8 @@ class Ibuildings_Gearman_Model_Queue extends Mage_Core_Model_Abstract
     private $_client;
 
     /**
-     * Constructor
-     *
      * Just calls setGearmanClient() for default instantiation
+     *
      * @see setGearmanClient()
      */
     public function __construct()
@@ -52,7 +51,10 @@ class Ibuildings_Gearman_Model_Queue extends Mage_Core_Model_Abstract
             $servers[$i] .= ':' . (($onePort) ? $ports[0] : $ports[$i]);
         }
 
-        if (class_exists('Net_Gearman_Client')) {
+        if (
+            class_exists('Net_Gearman_Client') &&
+            'net' === $opts['gearman']['type']) {
+
             $this->_client = new Net_Gearman_Client($servers);
         }
         else {
@@ -64,10 +66,20 @@ class Ibuildings_Gearman_Model_Queue extends Mage_Core_Model_Abstract
     }
 
     /**
+     * Returns the current client object used for dispatching messages
+     *
+     * @return GearmanClient|Net_Gearman_Client The client being used
+     */
+    public function getGearmanClient()
+    {
+        return $this->_client;
+    }
+
+    /**
      * Send the job to the queue specified
      *
      * @param array $task Array containing the 'queue' name and the task
-     * @return string|false The ID for the submitted task if the gearman extension is used
+     * @return string|false The ID for the submitted task if the Gearman extension is used
      */
     public function dispatchTask($task)
     {
@@ -89,7 +101,7 @@ class Ibuildings_Gearman_Model_Queue extends Mage_Core_Model_Abstract
             );
         }
     }
-    
+
     /**
      * Check the status of a previously submitted job
      *
@@ -108,42 +120,57 @@ class Ibuildings_Gearman_Model_Queue extends Mage_Core_Model_Abstract
     }
 
     /**
-     * Check the status of the job
+     * Check the status of a submitted job
      *
      * @param string $id The unique Gearman job ID
      */
-    public function checkJobStatus($id)
-    {
-        if (get_class($this->_client) !== 'Net_Gearman_Client') {
-            $status = $this->_client->jobStatus($id);
-            $out = '';
-            if ($status[0] && !$status[1]) {
-                $out = 'queued';
-            }
-            else if ($status[0] && $status[1]) {
-                if ($status[2] === 0 && $status[3] === 0) {
-                    $out = 'working';
-                }
-                else {
-                    $out = ((int) $status[2] / $status[3]) * 100;
-                }
-            }
-            else if (!$status[0] && !$status[1]) {
-                $out = 'done';
-            }
-            return $out;
-        }
-        else {
-            return null;
-        }
-    }
-    
+     public function checkJobStatus($id)
+     {
+         if (get_class($this->_client) !== 'Net_Gearman_Client') {
+             $status = $this->_client->jobStatus($id);
+             return $this->_getJobStatus($status);
+         }
+         else {
+             return null;
+         }
+     }
+
+     /**
+      * Returns the current job status
+      *
+      * Turns the status array from Gearman into a meaningful status
+      * to report back to the client
+      *
+      * @return string The current status
+      */
+     private function _getJobStatus($status)
+     {
+         $out = '';
+         if ($status[0] && !$status[1]) {
+             $out = 'queued';
+         }
+         else if ($status[0] && $status[1]) {
+             if ($status[2] === 0 && $status[3] === 0) {
+                 $out = 'working';
+             }
+             else {
+                 $out = ((int) $status[2] / $status[3]) * 100;
+             }
+         }
+         else if (!$status[0] && !$status[1]) {
+             $out = 'done';
+         }
+         return $out;
+     }
+
     /**
+     * Calls a Gearman task and waits for it's return value
      *
+     * @return array|null the results from the task or null
      */
     public function blockingCall($task)
     {
-        if (get_class($this->_client) !== 'Net_Gearman_Client') {
+        if (get_class($this->_client) === 'GearmanClient') {
             do {
                 $ret = $this->_client->do(
                     $task['queue'],
@@ -151,8 +178,8 @@ class Ibuildings_Gearman_Model_Queue extends Mage_Core_Model_Abstract
                 );
                 $code = $this->_client->returnCode();
             }
-            while ($code !== GEARMAN_SUCCESS && $code !== GEARMAN_FAILURE);
-            
+            while ($code !== GEARMAN_SUCCESS || $code === GEARMAN_FAILURE);
+
             if ($code === GEARMAN_FAILURE) {
                 return null;
             }

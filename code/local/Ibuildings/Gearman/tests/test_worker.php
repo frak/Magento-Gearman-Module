@@ -1,6 +1,6 @@
 <?php
 
-@unlink('./testing.log');
+@unlink('./gearman_testing.log');
 
 $worker = new GearmanWorker();
 $worker->addServer('127.0.0.1', 4730);
@@ -20,7 +20,7 @@ function test_fn($job)
     $job->sendStatus(0, 2);
     $stuff = unserialize($job->workload());
     file_put_contents(
-        './testing.log',
+        './gearman_testing.log',
         $stuff['id'] . ' - ' . $stuff['payload'] . PHP_EOL,
         FILE_APPEND
     );
@@ -39,7 +39,7 @@ function quick_test_fn($job)
 {
     $stuff = unserialize($job->workload());
     file_put_contents(
-        './testing.log',
+        './gearman_testing.log',
         $stuff['id'] . ' - ' . $stuff['payload'] . PHP_EOL,
         FILE_APPEND
     );

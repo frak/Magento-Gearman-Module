@@ -63,7 +63,7 @@
 											(<span class="var-type"></span>&nbsp;<span class="var-name">$task</span>)
 									</div>
 																<div class="method-definition">
-											<span class="method-result">void</span>
+											<span class="method-result">null|string</span>
 										<a href="#checkJobStatus" title="details" class="method-name">checkJobStatus</a>
 											(<span class="var-type">string</span>&nbsp;<span class="var-name">$id</span>)
 									</div>
@@ -107,12 +107,11 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">Constructor __construct</span> (line <span class="line-number">30</span>)
+		<span class="method-title">Constructor __construct</span> (line <span class="line-number">29</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Constructor</p>
-<p class="description"><p>Just calls setGearmanClient() for default instantiation</p></p>
+<p class="short-description">Just calls setGearmanClient() for default instantiation</p>
 	<ul class="tags">
 				<li><span class="field">see:</span> <a href="../../Ibuildings/Gearman/Ibuildings_Gearman_Model_Queue.html#methodsetGearmanClient">Ibuildings_Gearman_Model_Queue::setGearmanClient()</a></li>
 				<li><span class="field">access:</span> public</li>
@@ -133,13 +132,15 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">blockingCall</span> (line <span class="line-number">172</span>)
+		<span class="method-title">blockingCall</span> (line <span class="line-number">190</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
 <p class="short-description">Calls a Gearman task and waits for it's return value</p>
+<p class="description"><p><div class="src-code"><ol><li><div class="src-line">&nbsp;<span class="src-var">$ret&nbsp;</span>=&nbsp;<span class="src-var">$queue</span><span class="src-sym">-&gt;</span><a href="../../Ibuildings/Gearman/Ibuildings_Gearman_Model_Queue.html#methodblockingCall">blockingCall</a><span class="src-sym">(</span><span class="src-var">$task</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div></p></p>
 	<ul class="tags">
-				<li><span class="field">return:</span> the results from the task or null</li>
+				<li><span class="field">return:</span> The results from the task</li>
 				<li><span class="field">access:</span> public</li>
 			</ul>
 	
@@ -163,17 +164,22 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">checkJobStatus</span> (line <span class="line-number">128</span>)
+		<span class="method-title">checkJobStatus</span> (line <span class="line-number">143</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Check the status of a submitted job</p>
+<p class="short-description">Check the status of a previously submitted job</p>
+<p class="description"><p><div class="src-code"><ol><li><div class="src-line">&nbsp;<span class="src-key">while&nbsp;</span><span class="src-sym">((</span><span class="src-var">$status&nbsp;</span>=&nbsp;<span class="src-var">$queue</span><span class="src-sym">-&gt;</span><a href="../../Ibuildings/Gearman/Ibuildings_Gearman_Model_Queue.html#methodcheckJobStatus">checkJobStatus</a><span class="src-sym">(</span><span class="src-var">$id</span><span class="src-sym">))&nbsp;</span>!==&nbsp;<span class="src-str">'done'</span><span class="src-sym">)&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;<span class="src-str">&quot;</span><span class="src-str"><span class="src-var">$status</span>%&nbsp;complete\n</span><span class="src-str">&quot;</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.php.net/sleep">sleep</a><span class="src-sym">(</span><span class="src-num">1</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-sym">}</span></div></li>
+</ol></div></p></p>
 	<ul class="tags">
 				<li><span class="field">access:</span> public</li>
 			</ul>
 	
 	<div class="method-signature">
-		<span class="method-result">void</span>
+		<span class="method-result">null|string</span>
 		<span class="method-name">
 			checkJobStatus
 		</span>
@@ -192,11 +198,15 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">checkTaskComplete</span> (line <span class="line-number">112</span>)
+		<span class="method-title">checkTaskComplete</span> (line <span class="line-number">120</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Check the status of a previously submitted job</p>
+<p class="short-description">Check whether a previously submitted job has completed</p>
+<p class="description"><p><div class="src-code"><ol><li><div class="src-line">&nbsp;<span class="src-key">if&nbsp;</span><span class="src-sym">(</span><span class="src-var">$queue</span><span class="src-sym">-&gt;</span><a href="../../Ibuildings/Gearman/Ibuildings_Gearman_Model_Queue.html#methodcheckTaskComplete">checkTaskComplete</a><span class="src-sym">(</span><span class="src-var">$id</span><span class="src-sym">))&nbsp;</span><span class="src-sym">{</span></div></li>
+<li><div class="src-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="src-comm">//&nbsp;work&nbsp;has&nbsp;been&nbsp;done</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-sym">}</span></div></li>
+</ol></div></p></p>
 	<ul class="tags">
 				<li><span class="field">return:</span> Whether task is complete or not</li>
 				<li><span class="field">access:</span> public</li>
@@ -222,11 +232,14 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">dispatchTask</span> (line <span class="line-number">85</span>)
+		<span class="method-title">dispatchTask</span> (line <span class="line-number">88</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
 <p class="short-description">Send the job to the queue specified</p>
+<p class="description"><p><div class="src-code"><ol><li><div class="src-line">&nbsp;<span class="src-var">$queue&nbsp;</span>=&nbsp;<span class="src-id">Mage</span><span class="src-sym">::</span><span class="src-id">getModel</span><span class="src-sym">(</span><span class="src-str">'gearman/queue'</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-var">$id&nbsp;</span>=&nbsp;<span class="src-var">$queue</span><span class="src-sym">-&gt;</span><a href="../../Ibuildings/Gearman/Ibuildings_Gearman_Model_Queue.html#methoddispatchTask">dispatchTask</a><span class="src-sym">(</span><span class="src-var">$task</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
+</ol></div></p></p>
 	<ul class="tags">
 				<li><span class="field">return:</span> The ID for the submitted task if the Gearman extension is used</li>
 				<li><span class="field">access:</span> public</li>
@@ -252,7 +265,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">getGearmanClient</span> (line <span class="line-number">74</span>)
+		<span class="method-title">getGearmanClient</span> (line <span class="line-number">73</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -277,7 +290,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">setGearmanClient</span> (line <span class="line-number">42</span>)
+		<span class="method-title">setGearmanClient</span> (line <span class="line-number">41</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -309,7 +322,7 @@
 
 
 	<p class="notes" id="credit">
-		Documentation generated on Tue, 30 Nov 2010 05:44:19 -0800 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+		Documentation generated on Tue, 30 Nov 2010 07:41:23 -0800 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
 	</p>
 	</div></body>
 </html>

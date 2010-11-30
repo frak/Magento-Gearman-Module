@@ -9,4 +9,9 @@ if (!$app_path) {
 defined('APPLICATION_PATH')
     || define('APPLICATION_PATH', $app_path);
     
+defined('LOG_PATH')
+    || define('LOG_PATH', '/mnt/hgfs/Sites/magento.development.local/public/app/code/local/Ibuildings/Gearman/tests/');
+
+    
 require_once APPLICATION_PATH.'/Mage.php';
+require_once 'Net/Gearman/Client.php';

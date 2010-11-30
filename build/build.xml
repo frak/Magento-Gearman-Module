@@ -35,7 +35,9 @@
     </target>
     <target name="phpmd">
         <exec dir="${basedir}" executable="phpmd" failonerror="false">
-            <arg line="code/local/Ibuildings/Gearman/Model xml codesize
+            <arg line="code/local/Ibuildings/Gearman/Model 
+                       xml
+                       codesize,unusedcode,naming,design
                        --reportfile ${basedir}/build/logs/pmd.xml"/>
         </exec>
     </target>

@@ -110,7 +110,7 @@ class Ibuildings_Gearman_Model_Queue extends Mage_Core_Model_Abstract
      * Check whether a previously submitted job has completed
      * <code>
      * if ($queue->checkTaskComplete($id)) {
-     *     // works has been done
+     *     // work has been done
      * }
      * </code>
      *

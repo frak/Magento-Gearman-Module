@@ -14,4 +14,12 @@
     <testsuite name="Gearman Tests">
         <directory suffix="Test.php">.</directory>
     </testsuite>
+    <filter>
+        <whitelist>
+            <directory suffix=".php">/mnt/hgfs/Sites/magento.development.local/public/app/code/local/Ibuildings/Gearman/Model</directory>
+        </whitelist>
+        <blacklist>
+            <directory>/usr</directory>
+        </blacklist>
+    </filter>
 </phpunit>

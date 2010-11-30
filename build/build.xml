@@ -13,6 +13,10 @@
         <mkdir dir="${basedir}/build/logs"/>
         <mkdir dir="${basedir}/build/api"/>
         <mkdir dir="${basedir}/build/coverage"/>
+        <symlink 
+            link="${basedir}/build/logs/coverage"
+            resource="${basedir}/build/coverage"
+        />
     </target>
 
     <target name="phpdoc">

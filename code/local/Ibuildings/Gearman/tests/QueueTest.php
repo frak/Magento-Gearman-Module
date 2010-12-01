@@ -101,7 +101,7 @@ class QueueTest extends Ibuildings_Mage_Test_PHPUnit_ControllerTestCase
         $id = $this->_queue->dispatchTask($this->getTask());
         do {
             $ret = $this->_queue->checkJobStatus($id);
-            if ($ret !== 'done' && $ret !== 'queued') {
+            if ($ret !== 'done' && $ret !== 'queued' && $ret !== 'working') {
                 $this->assertGreaterThanOrEqual(0, $ret);
                 $this->assertLessThanOrEqual(100, $ret);
             }

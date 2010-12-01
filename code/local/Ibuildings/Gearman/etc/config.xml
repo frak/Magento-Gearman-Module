@@ -47,4 +47,13 @@
 	       </gearman>
 	    </helpers>
 	</global>
+	<default>
+	   <gearman_options>
+	       <gearman>
+	           <server>127.0.0.1</server>
+	           <port>4730</port>
+	           <timeout>30</timeout>
+	       </gearman>
+	   </gearman_options>
+	</default>
 </config>

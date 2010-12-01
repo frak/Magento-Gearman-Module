@@ -145,7 +145,7 @@ class Ibuildings_Gearman_Model_Queue extends Mage_Core_Model_Abstract
      {
          if (get_class($this->_client) !== 'Net_Gearman_Client') {
              $status = $this->_client->jobStatus($jobId);
-             return $this->_getJobStatus($status);
+             return $this->getJobStatus($status);
          }
          else {
              return null;
@@ -160,7 +160,7 @@ class Ibuildings_Gearman_Model_Queue extends Mage_Core_Model_Abstract
       *
       * @return string The current status
       */
-     private function _getJobStatus($status)
+     public function getJobStatus($status)
      {
          $out = '';
          if ($status[0] && !$status[1]) {
@@ -199,13 +199,7 @@ class Ibuildings_Gearman_Model_Queue extends Mage_Core_Model_Abstract
                 $code = $this->_client->returnCode();
             }
             while ($code !== GEARMAN_SUCCESS || $code === GEARMAN_FAILURE);
-
-            if ($code === GEARMAN_FAILURE) {
-                return null;
-            }
-            else {
-                return unserialize($ret);
-            }
+            return unserialize($ret);
         }
         else {
             return null;

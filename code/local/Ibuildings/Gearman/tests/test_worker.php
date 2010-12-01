@@ -6,7 +6,7 @@ require_once './bootstrap.php';
 
 $worker = new GearmanWorker();
 $worker->addServer('127.0.0.1', 4730);
-$worker->addFunction('test', 'test_fn');
+$worker->addFunction('test', 'quick_test_fn');
 
 echo "Waiting for work...\n";
 while ($worker->work()) {

@@ -11,7 +11,9 @@ defined('APPLICATION_PATH')
     
 defined('LOG_PATH')
     || define('LOG_PATH', '/mnt/hgfs/Sites/magento.development.local/public/app/code/local/Ibuildings/Gearman/tests/');
+    
+defined('TEST')
+    || define('TEST', true);
 
     
 require_once APPLICATION_PATH.'/Mage.php';
-require_once 'Net/Gearman/Client.php';

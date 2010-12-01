@@ -61,7 +61,7 @@
 																<div class="method-definition">
 											<span class="method-result">array|null</span>
 										<a href="#blockingCall" title="details" class="method-name">blockingCall</a>
-											(<span class="var-type"></span>&nbsp;<span class="var-name">$task</span>)
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$task</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$timeout</span> = <span class="var-default">null</span>])
 									</div>
 																<div class="method-definition">
 											<span class="method-result">null|string</span>
@@ -138,7 +138,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">blockingCall</span> (line <span class="line-number">191</span>)
+		<span class="method-title">blockingCall</span> (line <span class="line-number">200</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -155,13 +155,16 @@
 		<span class="method-name">
 			blockingCall
 		</span>
-					(<span class="var-type"></span>&nbsp;<span class="var-name">$task</span>)
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$task</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$timeout</span> = <span class="var-default">null</span>])
 			</div>
 	
 			<ul class="parameters">
 					<li>
 				<span class="var-type"></span>
 				<span class="var-name">$task</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$timeout</span>			</li>
 				</ul>
 		
 			
@@ -170,7 +173,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">checkJobStatus</span> (line <span class="line-number">144</span>)
+		<span class="method-title">checkJobStatus</span> (line <span class="line-number">153</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -207,7 +210,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">checkTaskComplete</span> (line <span class="line-number">121</span>)
+		<span class="method-title">checkTaskComplete</span> (line <span class="line-number">130</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -244,7 +247,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">dispatchTask</span> (line <span class="line-number">89</span>)
+		<span class="method-title">dispatchTask</span> (line <span class="line-number">98</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -277,11 +280,12 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">getGearmanClient</span> (line <span class="line-number">74</span>)
+		<span class="method-title">getGearmanClient</span> (line <span class="line-number">83</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
 <p class="short-description">Returns the current client object used for dispatching messages</p>
+<p class="description"><p>You should not have to use this method, and it is meant for testing</p></p>
 	<ul class="tags">
 				<li><span class="field">return:</span> The client being used</li>
 				<li><span class="field">access:</span> public</li>
@@ -302,7 +306,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">getJobStatus</span> (line <span class="line-number">163</span>)
+		<span class="method-title">getJobStatus</span> (line <span class="line-number">172</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -333,12 +337,12 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">setGearmanClient</span> (line <span class="line-number">42</span>)
+		<span class="method-title">setGearmanClient</span> (line <span class="line-number">49</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
 <p class="short-description">Sets the Gearman object according to config options</p>
-<p class="description"><p>Reads the server details from config and creates the GearmanClient  object and connects to the queue server</p></p>
+<p class="description"><p>Reads the server details from config and creates the GearmanClient  object and connects to the queue server.  There is an optional 'type'  key, which can be used to force the type of client used.  This was  introduced for testing purposes and should be used with caution as  Net_Gearman &amp; Gearman extension queues cannot be used interchangeably.</p><p>Also, I have not seen this documented anywhere, but it seems that the  addServer/s() method does not perform host lookup and must have a  dotted-quad IP sent for it to be able to connect to the job server.</p></p>
 	<ul class="tags">
 				<li><span class="field">access:</span> public</li>
 			</ul>
@@ -365,7 +369,7 @@
 
 
 	<p class="notes" id="credit">
-		Documentation generated on Wed, 01 Dec 2010 12:09:27 +0000 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+		Documentation generated on Wed, 01 Dec 2010 13:24:05 +0000 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
 	</p>
 	</div></body>
 </html>

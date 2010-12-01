@@ -126,4 +126,20 @@ class QueueTest extends Ibuildings_Mage_Test_PHPUnit_ControllerTestCase
         $ret = $this->_queue->blockingCall($this->getTask());
         $this->assertNull($ret);
     }
+    
+    public function testJobStatuses()
+    {
+        $array = array(true, false);
+        $ret   = $this->_queue->getJobStatus($array);
+        $this->assertEquals('queued', $ret);
+        $array = array(true, true, 0, 0);
+        $ret   = $this->_queue->getJobStatus($array);
+        $this->assertEquals('working', $ret);
+        $array = array(true, true, 1, 2);
+        $ret   = $this->_queue->getJobStatus($array);
+        $this->assertEquals('50', $ret);
+        $array = array(false, false);
+        $ret   = $this->_queue->getJobStatus($array);
+        $this->assertEquals('done', $ret);
+    }
 }

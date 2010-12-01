@@ -19,6 +19,8 @@ while ($worker->work()) {
 
 function test_fn($job)
 {
+    $job->sendStatus(0, 0);
+    sleep(1);
     $job->sendStatus(0, 2);
     $stuff = unserialize($job->workload());
     file_put_contents(

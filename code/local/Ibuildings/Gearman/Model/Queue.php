@@ -1,6 +1,6 @@
 <?php
 
-if (!class_exists('GearmanClient')) {
+if (!class_exists('GearmanClient') || defined('TEST')) {
     require_once 'Net/Gearman/Client.php';
 }
 

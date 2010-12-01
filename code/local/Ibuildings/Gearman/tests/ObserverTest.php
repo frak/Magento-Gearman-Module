@@ -21,7 +21,7 @@ class ObserverTest extends Ibuildings_Mage_Test_PHPUnit_ControllerTestCase
         $this->assertTrue($found);
 
         $id         = uniqid();
-        $data       = 'This is a string!';
+        $data       = 'This is a string';
         $e          = array();
         $e['queue'] = 'test';
         $e['task']  = array(
@@ -36,10 +36,15 @@ class ObserverTest extends Ibuildings_Mage_Test_PHPUnit_ControllerTestCase
             PHP_EOL,
             file_get_contents(LOG_PATH . 'gearman_testing.log')
         );
-        $res = preg_match(
-            '/' . $id . ' \- ' . $data . '/',
-            $log[count($log) - 2]
-        );
+        for ($i = 0; $i < count($log); ++$i) {
+            $res = preg_match(
+                '/' . $id . ' \- ' . $data . '/',
+                $log[count($log) - 2]
+            );
+            if (1 == $res) {
+                break;
+            }
+        }
         $this->assertEquals(1, $res);
     }
 }

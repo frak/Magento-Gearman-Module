@@ -36,7 +36,14 @@ class Ibuildings_Gearman_Model_Queue extends Mage_Core_Model_Abstract
      * Sets the Gearman object according to config options
      *
      * Reads the server details from config and creates the GearmanClient
-     * object and connects to the queue server
+     * object and connects to the queue server.  There is an optional 'type'
+     * key, which can be used to force the type of client used.  This was
+     * introduced for testing purposes and should be used with caution as
+     * Net_Gearman & Gearman extension queues cannot be used interchangeably.
+     *
+     * Also, I have not seen this documented anywhere, but it seems that the
+     * addServer/s() method does not perform host lookup and must have a
+     * dotted-quad IP sent for it to be able to connect to the job server.
      * @param array $opts Configuration options
      */
     public function setGearmanClient($opts = null)
@@ -68,6 +75,8 @@ class Ibuildings_Gearman_Model_Queue extends Mage_Core_Model_Abstract
 
     /**
      * Returns the current client object used for dispatching messages
+     *
+     * You should not have to use this method, and it is meant for testing
      *
      * @return GearmanClient|Net_Gearman_Client The client being used
      */
@@ -188,18 +197,30 @@ class Ibuildings_Gearman_Model_Queue extends Mage_Core_Model_Abstract
      *
      * @return array|null The results from the task
      */
-    public function blockingCall($task)
+    public function blockingCall($task, $timeout = null)
     {
         if (get_class($this->_client) === 'GearmanClient') {
+            if (is_null($timeout)) {
+                $opts = Mage::getStoreConfig('gearman_options');
+                $timeout = $opts['gearman']['timeout'];
+            }
+            $start = time();
             do {
                 $ret = $this->_client->do(
                     $task['queue'],
                     serialize($task['task'])
                 );
                 $code = $this->_client->returnCode();
+                sleep(1);   // to avoid flooding
+                $wait = time() < ($start + $timeout);
             }
-            while ($code !== GEARMAN_SUCCESS || $code === GEARMAN_FAILURE);
-            return unserialize($ret);
+            while ($code !== GEARMAN_SUCCESS && $wait);
+            if (!$wait) {
+                return null;
+            }
+            else {
+                return unserialize($ret);
+            }
         }
         else {
             return null;

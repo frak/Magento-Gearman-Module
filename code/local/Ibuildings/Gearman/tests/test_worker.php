@@ -20,14 +20,14 @@ while ($worker->work()) {
 function test_fn($job)
 {
     $job->sendStatus(0, 0);
-    sleep(1);
-    $job->sendStatus(0, 2);
     $stuff = unserialize($job->workload());
     file_put_contents(
         LOG_PATH . 'gearman_testing.log',
         $stuff['id'] . ' - ' . $stuff['payload'] . PHP_EOL,
         FILE_APPEND
     );
+    sleep(1);
+    $job->sendStatus(0, 2);
     $stuff['payload'] = strrev($stuff['payload']);
     sleep(1);
     $job->sendStatus(1, 2);

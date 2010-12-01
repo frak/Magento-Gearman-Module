@@ -142,4 +142,11 @@ class QueueTest extends Ibuildings_Mage_Test_PHPUnit_ControllerTestCase
         $ret   = $this->_queue->getJobStatus($array);
         $this->assertEquals('done', $ret);
     }
+    
+    public function testSettingLowTimeoutCausesBlockingCallToReturn()
+    {
+        $this->getQueue();
+        $ret = $this->_queue->blockingCall($this->getTask(), 0);
+        $this->assertNull($ret);
+    }
 }

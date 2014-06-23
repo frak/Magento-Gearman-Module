@@ -1,0 +1,16 @@
+{
+    "name": "ibuildings/gearman",
+    "license": "LICENSE",
+    "type": "magento-module",
+    "description": "Allow asynchronous task processing via the Gearman job server.",
+    "homepage": "http://www.ibuildings.com/",
+    "require": {
+        "magento-hackathon/magento-composer-installer": "*"
+    },
+    "authors":[
+        {
+            "name":"Michael Davey",
+            "email":"mdavey@ibuildings.com"
+        }
+    ]
+}

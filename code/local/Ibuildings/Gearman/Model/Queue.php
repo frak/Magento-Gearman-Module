@@ -67,9 +67,12 @@ class Ibuildings_Gearman_Model_Queue extends Mage_Core_Model_Abstract
         }
         else {
             $this->_client = new GearmanClient();
-            $this->_client->addServers(
+            $success = $this->_client->addServers(
                 implode(',', $servers)
             );
+            if (!$success) {
+                Mage::throwException('Gearman server not found. Background tasks will not be executed.');
+            }
         }
     }
 
@@ -109,10 +112,14 @@ class Ibuildings_Gearman_Model_Queue extends Mage_Core_Model_Abstract
             return null;
         }
         else {
-            return $this->_client->doBackground(
+            $jobId = $this->_client->doBackground(
                 $task['queue'],
                 serialize($task['task'])
             );
+            if ($this->_client->returnCode() != GEARMAN_SUCCESS) {
+                Mage::throwException('Background task could not be started:' . $this->_client->error);
+            }
+            return $jobId;
         }
     }
 

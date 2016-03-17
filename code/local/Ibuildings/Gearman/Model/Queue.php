@@ -1,6 +1,6 @@
 <?php
 
-if (!class_exists('GearmanClient') || defined('TEST')) {
+if (!class_exists('GearmanClient', false) || defined('TEST')) {
     require_once 'Net/Gearman/Client.php';
 }
 
@@ -60,7 +60,7 @@ class Ibuildings_Gearman_Model_Queue extends Mage_Core_Model_Abstract
         }
 
         if (
-            class_exists('Net_Gearman_Client') &&
+            class_exists('Net_Gearman_Client', false) &&
             'net' === $opts['gearman']['type']) {
 
             $this->_client = new Net_Gearman_Client($servers);
